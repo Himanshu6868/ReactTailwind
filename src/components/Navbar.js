@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpRightFromSquare } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false); // State to track menu visibility
@@ -51,50 +53,36 @@ const Navbar = () => {
             </li>
           </ul>
         </div>
-        <div className="flex md:hidden gap-2">
-          {/* Button and menu on smaller screens */}
+
+        <div className="flex flex-col md:hidden gap-2 over">
           <button
             className="text-gray-700 focus:outline-none"
             onClick={toggleMenu}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16v12H4zm2-2a2 2 0 10-4 0 2 2 0 004 0zM2 16a2 2 0 104 0 2 2 0 00-4 0z"
-              />
-            </svg>
+            <FontAwesomeIcon icon={isOpen ? faTimes : faBars} />
           </button>
+
           <div
-            className={`hidden menu md:flex gap-6 ${
-              isOpen ? "block" : "hidden"
+            className={`absolute md:flex gap-6 flex-col w-full h-screen bg-white right-0 top-20 transform transition-transform duration-200 ease-in-out ${
+              isOpen ? "translate-x-0" : "-translate-x-full"
             }`}
           >
-            {" "}
-            {/* Toggle visibility based on isOpen state */}
-            <ul>
-              <li>
+            <ul className="p-5 ">
+              <li className="m-5">
                 <a href="#">Developers</a>
               </li>
-              <li>
+              <li className="m-5">
                 <a href="#">Report Abuse</a>
               </li>
-              <li>
+              <li className="m-5">
                 <a href="#">Contact</a>
               </li>
             </ul>
-            <ul className="flex gap-2 border-l-2 pl-5">
-              <li>
+            <ul className="flex flex-col gap-2 border-l-2 pl-5">
+              <li className="ml-5">
                 <a href="#">Login</a>
               </li>
-              <li>
+              <li className="m-5">
                 <a href="#">Sign Up</a>
               </li>
             </ul>
